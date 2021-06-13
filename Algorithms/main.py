@@ -136,7 +136,8 @@ if __name__ == "__main__":
     # Ans: When dealing with huge volume of events data, it is likely that the current code could break due to OOM. 
     #     Especially the pivot logic where we are performing groupby and pivot. As the data is not properly partitioned, the memory required to perform the shuffle operation might exceed executor's capacity.
 
-    # Change in Approach: To reduce the volume, it is better to apply a filter on date(s). Partitioning the data by date/yyyymm can significantly reduce table scan.
+    # Change in Approach: 
+    # To reduce the volume, it is better to apply a filter on date(s). Partitioning the data by date/yyyymm can significantly reduce table scan.
     # Since the same joined dataframe is being used in multiple places. It would be a good idea to cache this dataframe.
     # Adjusting the spark shuffle partition count (spark.sql.shuffle.partitions) to an optimal value can increase the performance of the spark job.    
     # """
